@@ -1,6 +1,7 @@
 import React from 'react';
 import NavigationItem from './NavigationItem/NavigationItem';
 import classes from './NavigationItems.module.css';
+import { checkPropTypes } from 'prop-types';
 
 const navigationItems = () => (
   <ul className={classes.NavigationItems}>
@@ -8,7 +9,11 @@ const navigationItems = () => (
       Burger Builder
     </NavigationItem>
     <NavigationItem link="/orders">Orders</NavigationItem>
-    <NavigationItem link="/auth">Authenticate</NavigationItem>
+    {!checkPropTypes.isAuthenticated ? (
+      <NavigationItem link="/auth">Authenticate</NavigationItem>
+    ) : (
+      <NavigationItem link="/logout">Logout</NavigationItem>
+    )}
   </ul>
 );
 
